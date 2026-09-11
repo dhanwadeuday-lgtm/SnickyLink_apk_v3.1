@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../../core/theme/app_theme.dart';
-import '../domain/couple_notifier.dart';
+import '../../../../core/theme/app_theme.dart';
+import '../../domain/couple_notifier.dart';
 
 class InviteCreateScreen extends ConsumerWidget {
   const InviteCreateScreen({super.key});

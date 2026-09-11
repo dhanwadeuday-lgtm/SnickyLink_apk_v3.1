@@ -1,4 +1,8 @@
-name = "snickylink-web"
+# IMPORTANT: this must exactly match the Worker project name shown in your
+# Cloudflare dashboard (Workers & Pages -> your project). If you rename the
+# project in the dashboard, update this to match, or the deploy will warn
+# "Failed to match Worker name" and may deploy to the wrong script.
+name = "snickylink-apk-v3-1"
 compatibility_date = "2026-09-11"
 
 # This configuration is for `wrangler deploy` (Workers static assets).

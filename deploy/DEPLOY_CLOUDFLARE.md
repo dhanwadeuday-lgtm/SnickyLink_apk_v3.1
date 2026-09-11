@@ -28,6 +28,31 @@ API_BASE_URL=https://YOUR-FASTAPI-DOMAIN npm run cf:deploy:worker
 
 This uses `wrangler.toml` and serves `frontend/build/web` as static assets.
 
+## Cloudflare Workers Builds (git-connected CI/CD)
+If you connected this repo to Cloudflare through **Workers Builds** (the
+dashboard project has separate **Build command** and **Deploy command**
+fields, rather than Pages' single "build output directory" setting), both
+fields must be set explicitly — leaving Build command blank means nothing
+ever runs `flutter build web`, so the Deploy command's `wrangler deploy`
+fails with:
+
+```
+X [ERROR] The directory specified by the "assets.directory" field in your
+configuration file does not exist: /opt/buildhome/repo/frontend/build/web
+```
+
+Set, in the Cloudflare dashboard under the project's **Settings → Build**:
+
+- **Build command**: `bash deploy/cloudflare_build.sh` (or `npm run build`,
+  which is an alias for the same script)
+- **Deploy command**: `npx wrangler deploy`
+- **Environment variable**: `API_BASE_URL` = your deployed FastAPI backend
+  URL (e.g. the Render URL for `snickylink-api`)
+
+Both commands run in the same build container in order (build, then
+deploy), so the Flutter web output exists on disk by the time `wrangler
+deploy` reads `wrangler.toml`'s `[assets] directory`.
+
 ## Android APK
 Cloudflare is not the Android build environment. Build the same `frontend/` source with Flutter/Android SDK:
 

@@ -2,8 +2,9 @@
   "name": "snickylink-deploy",
   "private": true,
   "scripts": {
+    "build": "bash deploy/cloudflare_build.sh",
     "cf:build": "bash deploy/cloudflare_build.sh",
-    "cf:deploy": "npm run cf:build && npx wrangler pages deploy frontend/build/web --project-name snickylink",
+    "cf:deploy": "DEPLOY_TARGET=pages bash deploy/cloudflare_build.sh && npx wrangler pages deploy frontend/build/web --project-name snickylink",
     "cf:deploy:worker": "npm run cf:build && npx wrangler deploy"
   },
   "devDependencies": {
