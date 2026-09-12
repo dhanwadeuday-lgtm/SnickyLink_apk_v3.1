@@ -5,6 +5,7 @@ import smtplib
 from email.message import EmailMessage
 from datetime import datetime, timedelta, timezone
 from typing import Optional
+from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, EmailStr, Field
 from ...db.session import DbSession, get_db
@@ -43,7 +44,7 @@ class PasswordResetConfirm(BaseModel):
     new_password: str = Field(min_length=8, max_length=128)
 
 class UserOut(BaseModel):
-    id: str
+    id: UUID
     email: EmailStr
     class Config:
         from_attributes = True
