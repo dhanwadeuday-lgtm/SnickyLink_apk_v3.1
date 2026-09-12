@@ -2,8 +2,7 @@ import random
 from datetime import datetime, timezone
 from typing import List
 from sqlalchemy.orm import Session
-from ..models.snick import Snick, DailySnick, DailySnickState
-from ..models.couple import CoupleStats
+from ..models.snick import Snick, DailySnick, DailySnickState, CoupleStats
 
 class PersonalizationService:
     @staticmethod
